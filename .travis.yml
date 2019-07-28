@@ -7,3 +7,20 @@ before_install:
 
 script:
   - docker run -e CI=true pypalkar23/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk #AWS Elastic Beanstalk
+  region: "us-east-2" #Region you get from the URL DockerReact-env.4tw5hewauu.us-east-2.elasticbeanstalk.com 
+  app: "docker-react" #Name of the app of AWS
+  env: "DockerReact-env" # Name of the environment on AWS
+  bucket_name: "elasticbeanstalk-us-east-2-121472517838" # Bucket created along with elasticbeasntalk
+  bucket_path: "docker" #gets created automatically first time ypu deploy
+  on:
+    branch: master #deploy when commit or merge with master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+
+
++MmqxuWBlg4wr499axjFmr5hEFw8rz59sMqCWjTv
+  
